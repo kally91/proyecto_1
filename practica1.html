@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora para Alumnos de Preparatoria</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 80%;
+        }
+        .calculator {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        input[type="number"], select, button {
+            width: 85%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            font-size: 20px;
+            margin-top: 20px;
+            color: #333;
+        }
+        .name-list {
+            list-style-type: none;
+            padding: 0;
+            font-size: 18px;
+            color: #333;
+        }
+        .name-list li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <ul class="name-list">
+            <li><strong>XALLY DANIELA ARIAS COLUNGA</strong></li>
+            <li><strong>KEIMI MARELY LUITIN ESTEBAN</strong></li>
+        </ul>
+
+        <div class="calculator">
+            <h1>Calculadora Matemática</h1>
+            <input type="text" id="expression" placeholder="Escribe la operación" />
+            <button onclick="calculate()">Calcular</button>
+            <div class="result" id="result"></div>
+        </div>
+    </div>
+
+    <script>
+        function calculate() {
+            // Obtener la expresión matemática ingresada
+            let expression = document.getElementById('expression').value;
+
+            // Validar que la expresión no esté vacía
+            if (expression === "") {
+                document.getElementById('result').innerHTML = "Por favor, ingresa una operación.";
+                return;
+            }
+
+            try {
+                // Evaluar la expresión respetando la jerarquía de operaciones
+                let result = eval(expression);
+
+                // Verificar si el resultado es un número válido
+                if (isNaN(result)) {
+                    document.getElementById('result').innerHTML = "Error: Expresión no válida.";
+                } else {
+                    document.getElementById('result').innerHTML = `Resultado: ${result}`;
+                }
+            } catch (e) {
+                // Si ocurre un error, mostrar un mensaje
+                document.getElementById('result').innerHTML = "Error: Expresión no válida.";
+            }
+        }
+    </script>
+
+</body>
+</html>
